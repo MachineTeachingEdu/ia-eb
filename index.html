@@ -103,6 +103,7 @@
   <div class="nav-links">
     <a href="#ementa">Ementa</a>
     <a href="#aulas">Aulas</a>
+    <a href="formacoes.html">Formações</a>
     <a href="{{ questionarioUrl }}" class="nav-cta" target="_blank">Responder</a>
   </div>
 </nav>
@@ -144,6 +145,7 @@
     <p class="sub">Um curso do Machine Teaching para professoras e professores compreenderem, com rigor e senso crítico, o que a inteligência artificial generativa pode — e não pode — fazer pela sala de aula.</p>
     <div class="row">
       <a href="#aulas" class="btn-solid">Ver as aulas</a>
+      <a href="formacoes.html" class="btn-solid">Se inscrever</a>
       <a href="{{ questionarioUrl }}" class="btn-solid" target="_blank">Responder ao questionário</a>
     </div>
     <p class="tutoriais">Confira a <a href="#ementa" style="color:#fff; text-decoration:underline;">ementa</a> do curso abaixo</p>
@@ -188,7 +190,7 @@
           <h3>{{ lesson.title }}</h3>
           <p>{{ lesson.body }}</p>
           <a href="{{ lesson.url }}" class="{{ lesson.linkStyle }}" target="_blank">{{ lesson.linkText }}</a><br>
-          <a href="javascript:void(0);" class="soon" target="_blank">Capítulo em breve</a>
+          <!--<a href="javascript:void(0);" class="soon" target="_blank">Capítulo em breve</a>-->
         </div>
       </sc-for>
     </div>

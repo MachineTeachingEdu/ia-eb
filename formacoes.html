@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root{ --blue-900:#0b3d75; --blue-700:#0f4f95; --blue-600:#1465b8; --ink:#20242b; --ink-soft:#525a66; --paper:#f4f5f7; }
+    body{ margin:0; font-family:'Roboto', system-ui, -apple-system, sans-serif; color:var(--ink); text-wrap:pretty; background:var(--paper); }
+    a{ color:var(--blue-600); }
+    a:hover{ color:var(--blue-900); }
+    .wrap{ max-width:1180px; margin:0 auto; padding:0 40px; }
+    @media (max-width:640px){ .wrap{ padding:0 20px; } }
+    .nav{ display:flex; align-items:center; justify-content:space-between; padding:22px 40px; background:var(--blue-900); position:relative; z-index:2; }
+    @media (max-width:640px){ .nav{ padding:18px 20px; } }
+    .nav-brand{ color:#fff; font-weight:700; letter-spacing:0.08em; font-size:15px; text-transform:uppercase; text-decoration:none; }
+    .nav-links{ display:flex; align-items:center; gap:28px; }
+    .nav-links a{ color:#eaf1fb; font-size:14px; font-weight:500; text-decoration:none; }
+    .nav-links a:hover{ color:#fff; text-decoration:underline; }
+    .nav-links a.nav-cta{ background:#fff; color:var(--blue-700); font-weight:700; font-size:13px; letter-spacing:0.03em; padding:9px 18px; border-radius:4px; text-transform:uppercase; }
+    .nav-links a.nav-cta:hover{ background:#eaf1fb; color:var(--blue-900); }
+    @media (max-width:760px){ .nav-links a:not(.nav-cta){ display:none; } }
+    .hero{ position:relative; overflow:hidden; background:linear-gradient(135deg, var(--blue-600), var(--blue-900)); padding:72px 0 110px; text-align:center; }
+    .hero-net{ position:absolute; inset:0; opacity:0.35; }
+    .hero-inner{ position:relative; z-index:1; }
+    .hero h1{ color:#fff; font-size:clamp(30px,4.6vw,48px); font-weight:900; line-height:1.2; margin:0 auto; max-width:22ch; }
+    .hero .sub{ color:#dceafd; font-size:17px; line-height:1.6; max-width:56ch; margin:20px auto 0; }
+    .upcoming{ margin-top:-60px; position:relative; z-index:2; padding-bottom:64px; }
+    .grid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
+    @media (max-width:1000px){ .grid{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media (max-width:600px){ .grid{ grid-template-columns:1fr; } }
+    .ev-card{ background:#fff; border-radius:8px; box-shadow:0 8px 24px rgba(11,61,117,0.14); padding:28px; display:flex; flex-direction:column; gap:14px; }
+    .ev-tag{ align-self:flex-start; background:var(--blue-700); color:#fff; font-weight:700; font-size:12px; letter-spacing:0.05em; padding:4px 10px; border-radius:4px; text-transform:uppercase; }
+    .ev-card h3{ font-size:19px; font-weight:700; margin:0; line-height:1.35; }
+    .ev-meta{ display:flex; flex-direction:column; gap:8px; font-size:14.5px; color:var(--ink-soft); }
+    .ev-row{ display:flex; gap:10px; align-items:flex-start; }
+    .ev-row svg{ width:18px; height:18px; flex:none; color:var(--blue-700); margin-top:1px; }
+    .btn-blue{ align-self:flex-start; margin-top:auto; background:var(--blue-700); color:#fff; font-weight:700; font-size:13px; letter-spacing:0.03em; padding:11px 20px; border-radius:5px; text-decoration:none; text-transform:uppercase; }
+    .btn-blue:hover{ background:var(--blue-900); color:#fff; }
+    section.block{ padding:24px 0 72px; }
+    .section-kicker{ color:var(--blue-700); font-size:13px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin:0 0 10px; }
+    .section-title{ font-size:30px; font-weight:900; margin:0 0 28px; }
+    .past{ display:flex; flex-direction:column; gap:12px; }
+    .past-row{ background:#fff; border-radius:8px; box-shadow:0 4px 16px rgba(11,61,117,0.08); padding:20px 26px; display:grid; grid-template-columns:180px minmax(0,1fr) minmax(0,1fr) auto; gap:20px; align-items:center; font-size:14.5px; }
+    @media (max-width:760px){ .past-row{ grid-template-columns:1fr; gap:6px; } }
+    .past-date{ font-weight:700; color:var(--blue-700); }
+    .past-title{ font-weight:700; }
+    .past-local{ color:var(--ink-soft); }
+    .past-link{ font-weight:700; font-size:14px; text-decoration:none; white-space:nowrap; }
+    .past-link:hover{ text-decoration:underline; }
+    footer{ background:#e9ebee; padding:32px 0; }
+    .foot-inner{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:20px; font-size:13.5px; color:var(--ink-soft); }
+    .foot-brand{ font-weight:700; letter-spacing:0.06em; text-transform:uppercase; font-size:13px; color:var(--ink); margin:0 0 8px; }
+  </style>
+</helmet>
+
+<nav class="nav">
+  <span class="nav-brand">Machine Teaching · Curso</span>
+  <div class="nav-links">
+    <a href="#ementa">Ementa</a>
+    <a href="#aulas">Aulas</a>
+    <a href="formacoes.html">Formações</a>
+    <a href="{{ questionarioUrl }}" class="nav-cta" target="_blank">Responder</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <svg class="hero-net" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#ffffff" stroke-width="1" opacity="0.5">
+      <line x1="40" y1="60" x2="180" y2="130"></line><line x1="180" y1="130" x2="320" y2="40"></line>
+      <line x1="180" y1="130" x2="260" y2="240"></line><line x1="320" y1="40" x2="470" y2="90"></line>
+      <line x1="470" y1="90" x2="600" y2="30"></line><line x1="470" y1="90" x2="560" y2="200"></line>
+      <line x1="560" y1="200" x2="700" y2="160"></line><line x1="700" y1="160" x2="760" y2="60"></line>
+      <line x1="260" y1="240" x2="420" y2="300"></line><line x1="420" y1="300" x2="560" y2="200"></line>
+      <line x1="60" y1="220" x2="180" y2="130"></line><line x1="60" y1="220" x2="260" y2="240"></line>
+    </g>
+    <g fill="#ffffff" opacity="0.7">
+      <circle cx="40" cy="60" r="4"></circle><circle cx="180" cy="130" r="5"></circle><circle cx="320" cy="40" r="4"></circle>
+      <circle cx="470" cy="90" r="5"></circle><circle cx="600" cy="30" r="4"></circle><circle cx="560" cy="200" r="5"></circle>
+      <circle cx="700" cy="160" r="4"></circle><circle cx="260" cy="240" r="4"></circle><circle cx="420" cy="300" r="4"></circle>
+      <circle cx="60" cy="220" r="4"></circle><circle cx="760" cy="60" r="3"></circle>
+    </g>
+  </svg>
+  <div class="wrap hero-inner">
+    <h1>Formações · IA Generativa para a Educação Básica</h1>
+    <p class="sub">Confira as datas e os locais das próximas turmas e inscreva-se. Abaixo, o registro das formações já realizadas.</p>
+  </div>
+</section>
+
+<div class="wrap upcoming" id="proximas">
+  <p style="text-align:center; color:#fff; font-size:22px; font-weight:700; margin:0 0 28px;">Próximas formações</p>
+  <div class="grid">
+    <div class="ev-card">
+      <span class="ev-tag">Inscrições abertas</span>
+      <h3>Para professores das Naves</h3>
+      <div class="ev-meta">
+        <div class="ev-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg><span>02/10/2026 e 09/10/2026 de 14h às 17h</span></div>
+        <div class="ev-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12Z"></path><circle cx="12" cy="9" r="2.5"></circle></svg><span>Nave do Engenhão - Startup</span></div>
+      </div>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdLDH-65l12rXCA0-QG--LqipNkZfT_imol8GcsIk5CPt2L1A/viewform?usp=sharing&ouid=114843323742919813596" class="btn-blue">Inscreva-se</a>
+    </div>
+    <div class="ev-card">
+      <span class="ev-tag">Inscrições abertas</span>
+      <h3>Para profissionais da educação</h3>
+      <div class="ev-meta">
+        <div class="ev-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg><span>06/10/2026 e 08/10/2026 de 10h às 13h</span></div>
+        <div class="ev-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12Z"></path><circle cx="12" cy="9" r="2.5"></circle></svg><span>Nave do Engenhão - Startup</span></div>
+      </div>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScrHHqzZnJ4uSsvzK3rFton3Xla036T_9p81HLo4LFQ4X3hFA/viewform?usp=sharing&ouid=114843323742919813596" class="btn-blue">Inscreva-se</a>
+    </div>
+    <div class="ev-card">
+      <span class="ev-tag" style="background:#9aa1ab;">Em breve</span>
+      <h3>Para profissionais da educação</h3>
+      <div class="ev-meta">
+        <div class="ev-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg><span>Data a definir</span></div>
+        <div class="ev-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12Z"></path><circle cx="12" cy="9" r="2.5"></circle></svg><span>Nave da Pavuna</span></div>
+      </div>
+      <span class="btn-blue" style="background:#c4c9d0; cursor:default;">Inscrições em breve</span>
+    </div>
+  </div>
+</div>
+
+<section class="block" id="passadas">
+  <div class="wrap">
+    <p class="section-kicker">Histórico</p>
+    <h2 class="section-title">Formações passadas</h2>
+    <div class="past">
+      <div class="past-row">
+        <span class="past-date">28/07/2026 a 31/07/2026 de 8h às 9h30</span>
+        <!--<span class="past-title">Nome da formação</span>-->
+        <span class="past-local">78ª Reunião Anual da Sociedade Brasileira para o Progresso da Ciência, UFF/Gragoatá</span>
+       <!-- <a href="#" class="past-link">Ver materiais →</a>-->
+      </div>
+      <div class="past-row">
+        <span class="past-date">01/09/2026 de 9h às 17h</span>
+        <!--<span class="past-title">Nome da formação</span>-->
+        <span class="past-local">Universidade Federal de Juiz de Fora</span>
+       <!-- <a href="#" class="past-link">Ver materiais →</a>-->
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div>
+      <p class="foot-brand">Machine Teaching</p>
+      <p style="margin:0;">Laura O. Moraes (UNIRIO) · Carla Delgado (UFRJ)</p>
+    </div>
+    <p style="margin:0;">© 2026 IA Generativa para a Educação Básica</p>
+  </div>
+</footer>
+
+</x-dc>
+</body>
+</html>
