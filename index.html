@@ -24,7 +24,7 @@
     .nav{ display:flex; align-items:center; justify-content:space-between; padding:22px 40px;
       background:var(--blue-900); position:relative; z-index:2; }
     @media (max-width:640px){ .nav{ padding:18px 20px; } }
-    .nav-brand{ color:#fff; font-weight:700; letter-spacing:0.08em; font-size:15px; text-transform:uppercase; }
+    .nav-brand{ color:#fff; font-weight:700; letter-spacing:0.08em; font-size:15px; text-transform:uppercase;}
     .nav-links{ display:flex; align-items:center; gap:28px; }
     .nav-links a{ color:#eaf1fb; font-size:14px; font-weight:500; text-decoration:none; }
     .nav-links a:hover{ color:#fff; text-decoration:underline; }
@@ -99,7 +99,7 @@
 </helmet>
 
 <nav class="nav">
-  <a href="/"><span class="nav-brand">Machine Teaching · Curso</span></a>
+  <a href="/" style="text-decoration:none"><span class="nav-brand">Machine Teaching · Curso</span></a>
   <div class="nav-links">
     <a href="#ementa">Ementa</a>
     <a href="#aulas">Aulas</a>
